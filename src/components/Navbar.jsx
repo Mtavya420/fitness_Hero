@@ -32,17 +32,17 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#">
+            <Link className="nav-link" to="/exercises">
               Exercises
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#">
+            <Link className="nav-link" to="/videos">
               Videos
             </Link>
           </li>
         </ul>
-        <ul className="navbar-nav ml-auto">
+        <ul className="navbar-nav ms-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/Login">
               Login
