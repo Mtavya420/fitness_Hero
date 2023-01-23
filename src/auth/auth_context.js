@@ -8,8 +8,10 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+
 //describes how the context looks like
 const AuthContext = React.createContext({
+  user: null,
   name: "",
   email: "",
   isLoggedIn: false,
@@ -64,6 +66,7 @@ export const AuthContextProvider = (props) => {
     //console.log(currentUser);
   });
   const contextValue = {
+    user,
     name: user?.displayname,
     email: user?.email,
     isLoggedIn: user ? true : false,

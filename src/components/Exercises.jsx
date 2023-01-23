@@ -7,7 +7,7 @@ import ExerciseCard from "./ExerciseCard";
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
@@ -23,7 +23,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   };
   useEffect(() => {
     const fetchExercisesData = async () => {
-      setIsLoading(true);
+      // setIsLoading(true);
 
       let exercisesData = [];
 
@@ -34,12 +34,12 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         );
       } else {
         exercisesData = await fetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
+          `https://exercisedb.p.rapidapi.com/exercises/bodyPartList/${bodyPart}`,
           exerciseOptions
         );
       }
       setExercises(exercisesData);
-      setIsLoading(false);
+      // setIsLoading(false);
     };
     fetchExercisesData();
   }, [bodyPart]);
@@ -57,11 +57,9 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         flexWrap="wrap"
         justifyContent="center"
       >
-        {!isLoading &&
-          currentExercise.map((exercise, idx) => (
-            <ExerciseCard key={idx} exercise={exercise} />
-          ))}
-        {isLoading && <p>Loading...</p>}
+        {currentExercise.map((exercise, idx) => (
+          <ExerciseCard key={idx} exercise={exercise} />
+        ))}
       </Stack>
       <Stack sx={{ mt: { lg: "114px", xs: "70px" } }} alignItems="center">
         {exercises.length > 9 && (

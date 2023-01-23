@@ -12,6 +12,7 @@ import ExerciseVideos from "./components/ExerciseVideos";
 import NotFound from "./components/NotFound";
 import "./App.css";
 import AuthContext from "./auth/auth_context";
+import AuthForm from "./components/AuthForm";
 
 const App = () => {
   return (
@@ -37,7 +38,8 @@ const App = () => {
             path="/videos"
             element={<ExerciseVideos exerciseVideos={[]} name={"user"} />}
           />
-          {/* <Route path="/auth" element={<Authentication />} /> */}
+
+          <Route path="/auth" element={<AuthForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
