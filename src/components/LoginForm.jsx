@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import { loginValidation } from "./common/SchemaValidation";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -24,7 +25,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="#">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -36,18 +37,20 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
       email: "test@test.com",
-      age: "20",
       password: "testign101010!!!!!",
       confirmPassword: "testign101010!!!!!",
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+        
     },
   });
+
 
   return (
     <ThemeProvider theme={theme}>

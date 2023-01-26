@@ -22,17 +22,6 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState({});
-  // const {
-  //   status: getSettingsStatus,
-  //   data: settings,
-  //   error: getSettingsErrorMessage,
-  //   sendRequest: getSettings,
-  // } = useHttp(httpGetSettings)
-
-  // useEffect(() => {
-  //   //fetch the settings
-  //   getSettings()
-  // }, [])
 
   const handleLogout = async () => {
     try {
@@ -53,7 +42,7 @@ export const AuthContextProvider = (props) => {
 
   const handleRegister = async ({ email, password }) => {
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.log("error when registering user", err);
       throw new Error(err);

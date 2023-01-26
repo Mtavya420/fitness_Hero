@@ -1,13 +1,20 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, {useContext} from "react";
+import { Route, Navigate } from "react-router-dom";
+import { AuthContext } from "./AuthForm";
 
-const GuardedRoute = ({ component: Component, auth, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      auth === true ? <Component {...props} /> : <Redirect to="/" />
-    }
-  />
-);
-
+const GuardedRoute = ({ component: RouteComponent, ...rest }) => {
+  const { currentUser } = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={(routeProps) =>
+        !!currentUser ? (
+          <RouteComponent {...routeProps} />
+        ) : (
+          <Navigate to={"/login"} />
+        )
+      }
+    />
+  );
+};
 export default GuardedRoute;
