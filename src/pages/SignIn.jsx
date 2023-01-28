@@ -17,7 +17,7 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (user && Object.keys(user).length !== 0) navigate("/");
+    if (user && Object.keys(user).length !== 0){ navigate("/")};
   }, [user]);
 
   return (
