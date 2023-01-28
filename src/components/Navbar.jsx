@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/Logo.png";
+import AuthContext from "../auth/auth_context";
 
 const Navbar = () => {
+  const { isLoggedIn, user } = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <Link className="navbar-brand" to="/">
@@ -42,17 +44,22 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
+
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/Login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/SignUp">
-              Sign Up
-            </Link>
-          </li>
+          <li className="nav-item">{isLoggedIn && user.email}</li>
+          {!isLoggedIn ? (
+            <li className="nav-item">
+              <Link className="nav-link" to="/Login">
+                Login
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <Link className="nav-link" to="/logout">
+                logout
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

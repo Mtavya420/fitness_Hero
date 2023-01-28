@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 const Logout = () => {
   const authCtx = useContext(AuthContext);
   const [showBackDrop, setShowBackDrop] = useState(true);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    authCtx.onLogout();
+    authCtx.handleLogout();
   };
 
   useEffect(() => {
     handleLogout();
-    history.replace("/login");
+    navigate("/login");
     return () => setShowBackDrop(false);
   }, []);
 

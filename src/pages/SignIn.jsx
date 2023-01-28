@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../auth/auth_context";
@@ -7,26 +7,23 @@ import SimpleBackdrop from "../components/BackDrop";
 import useHttp, { STATUS_COMPLETED, STATUS_PENDING } from "../hooks/useHttp";
 
 const SignIn = () => {
-  const history = useNavigate();
-  const authCtx = useContext(AuthContext);
-  const { status, sendRequest } = useHttp(authCtx.onLogin);
-  const handleLogin = (values) => {
-    sendRequest(values);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const { user, handleLogin } = useContext(AuthContext);
+  const handleSignIn = (values) => {
+    handleLogin({ email: values.email, password: values.password }).then(() => {
+      setIsLoading(false);
+    });
   };
 
   useEffect(() => {
-    if (status === STATUS_COMPLETED) {
-      history.push("/home");
-    }
-  }, [status, history]);
+    if (user && Object.keys(user).length !== 0) navigate("/");
+  }, [user]);
 
-  // const { currentUser } = authCtx.isLoggedIn;
-  
   return (
     <div>
-      {/* {currentUser ? history.push("/") : null} */}
-      <SimpleBackdrop loading={status === STATUS_PENDING} />
-      <LoginForm onLogin={handleLogin} />
+      {/* <SimpleBackdrop loading={isLoading} /> */}
+      <LoginForm onLogin={handleSignIn} />
     </div>
   );
 };

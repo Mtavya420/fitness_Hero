@@ -1,30 +1,50 @@
-import React, {useState} from 'react';
-import {Box} from '@mui/material';
-import HeroBanner from '../components/HeroBanner';
-import SearchExercises from '../components/SearchExercises';
-import Exercises from '../components/Exercises';
+import React, { useState, useEffect, useContext } from "react";
+import { Box } from "@mui/material";
+import HeroBanner from "../components/HeroBanner";
+import SearchExercises from "../components/SearchExercises";
+import Exercises from "../components/Exercises";
+import AuthContext from "../auth/auth_context";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [bodyPart, setBodyPart] = useState('all')
+  const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
+  const { user, handleLogout, isLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.handleLogout = handleLogout;
+  }, []);
+
+  useEffect(() => {
+    console.log(JSON.stringify(isLoggedIn));
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
+
+  return <>testings</>;
+
   return (
-   <Box>
-    <HeroBanner />
-    {bodyPart &&  <SearchExercises 
-    setExercises={setExercises}
-    bodyPart={bodyPart}
-    setBodyPart={setBodyPart}
-    />}
-   
-   { 
-   bodyPart && <Exercises
-    exercises={exercises}
-    setExercises={setExercises}
-    bodyPart={bodyPart}
-    />}
-   </Box>
-  )
-}
+    <Box>
+      <HeroBanner />
+      {bodyPart && (
+        <SearchExercises
+          setExercises={setExercises}
+          bodyPart={bodyPart}
+          setBodyPart={setBodyPart}
+        />
+      )}
 
-export default Home
+      {bodyPart && (
+        <Exercises
+          exercises={exercises}
+          setExercises={setExercises}
+          bodyPart={bodyPart}
+        />
+      )}
+    </Box>
+  );
+};
 
+export default Home;

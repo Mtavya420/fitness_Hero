@@ -15,13 +15,15 @@ const AuthContext = React.createContext({
   name: "",
   email: "",
   isLoggedIn: false,
-  onLogin: ({ email, password }) => {},
-  onLogout: ({ email, password }) => {},
-  onRegister: ({ email, password }) => {},
+  isLoading: false,
+  handleLogin: ({ email, password }) => {},
+  handleLogout: () => {},
+  handleRegister: ({ email, password }) => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -32,18 +34,26 @@ export const AuthContextProvider = (props) => {
   };
 
   const handleLogin = async ({ email, password }) => {
+    alert(email + password);
     try {
+      // setIsLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
+      // setIsLoading(false);
     } catch (err) {
+      // setIsLoading(false);
+      console.log(err);
       throw new Error(err);
-      //console.log(err);
     }
   };
 
   const handleRegister = async ({ email, password }) => {
     try {
+      // setIsLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
+      setIsLoading(false);
+      return user;
     } catch (err) {
+      // setIsLoading(false);
       console.log("error when registering user", err);
       throw new Error(err);
     }
@@ -58,10 +68,11 @@ export const AuthContextProvider = (props) => {
     user,
     name: user?.displayname,
     email: user?.email,
-    isLoggedIn: user ? true : false,
-    onLogin: handleLogin,
-    onLogout: handleLogout,
-    onRegister: handleRegister,
+    isLoggedIn: user && Object.keys(user).length !== 0,
+    handleLogin,
+    handleLogout,
+    handleRegister,
+    isLoading,
   };
 
   return (

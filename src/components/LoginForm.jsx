@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,9 +13,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useFormik } from "formik";
+import { useFormik, validateYupSchema } from "formik";
 import { loginValidation } from "./common/SchemaValidation";
-
+import AuthContext from "../auth/auth_context";
 
 function Copyright(props) {
   return (
@@ -36,21 +37,19 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-
+export default function SignIn({ onLogin }) {
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
       email: "test@test.com",
-      password: "testign101010!!!!!",
-      confirmPassword: "testign101010!!!!!",
+      password: "qaalan420@gmail.com",
+      confirmPassword: "qaalan420@gmail.com",
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-        
+      console.log("form comp", values);
+      onLogin({ email: values.email, password: values.password });
     },
   });
-
 
   return (
     <ThemeProvider theme={theme}>

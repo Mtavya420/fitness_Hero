@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,7 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { signUpValidation } from "./common/SchemaValidation";
 import { useFormik } from "formik";
-
+import AuthContext from "../auth/auth_context";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -37,6 +38,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const { handleRegister, user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
       email: "",
@@ -47,9 +50,23 @@ export default function SignUp() {
     },
     validationSchema: signUpValidation,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleRegister({ email: values.email, password: values.password }).then(
+        (user) => {
+          if (user) navigate("/");
+          else {
+            navigate(0); //reload the page
+          }
+        }
+      );
     },
   });
+
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      console.log(JSON.stringify(user));
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <ThemeProvider theme={theme}>
