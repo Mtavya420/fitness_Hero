@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log(JSON.stringify(isLoggedIn));
+    // console.log(JSON.stringify(isLoggedIn));
     if (!isLoggedIn) {
       navigate("/login");
     }
