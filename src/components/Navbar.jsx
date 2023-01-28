@@ -46,7 +46,7 @@ const Navbar = () => {
         </ul>
 
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item">{isLoggedIn && user.email}</li>
+          <li className="nav-item nav-link">{isLoggedIn && user.email}</li>
           {!isLoggedIn ? (
             <li className="nav-item">
               <Link className="nav-link" to="/Login">

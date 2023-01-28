@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,7 +14,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik, validateYupSchema } from "formik";
 import { loginValidation } from "./common/SchemaValidation";
-import AuthContext from "../auth/auth_context";
 
 function Copyright(props) {
   return (
@@ -42,11 +40,11 @@ export default function SignIn({ onLogin }) {
     initialValues: {
       email: "test@test.com",
       password: "qaalan420@gmail.com",
-      confirmPassword: "qaalan420@gmail.com",
+      
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      console.log("form comp", values);
+      // console.log("form comp", values);
       onLogin({ email: values.email, password: values.password });
     },
   });

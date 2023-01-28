@@ -63,7 +63,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (user && Object.keys(user).length !== 0) {
-      console.log(JSON.stringify(user));
+      // console.log(JSON.stringify(user));
       navigate("/");
     }
   }, [user]);

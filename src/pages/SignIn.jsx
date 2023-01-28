@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../auth/auth_context";
 import LoginForm from "../components/LoginForm";
 import SimpleBackdrop from "../components/BackDrop";
-import useHttp, { STATUS_COMPLETED, STATUS_PENDING } from "../hooks/useHttp";
+
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const SignIn = () => {
 
   return (
     <div>
-      {/* <SimpleBackdrop loading={isLoading} /> */}
+      <SimpleBackdrop loading={isLoading} />
       <LoginForm onLogin={handleSignIn} />
     </div>
   );
