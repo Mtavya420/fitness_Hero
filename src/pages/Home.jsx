@@ -23,7 +23,7 @@ const Home = () => {
     }
   }, [isLoggedIn]);
 
-  return <>testings</>;
+  // return <>testings</>;
 
   return (
     <Box>
