@@ -9,19 +9,28 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
-  const { user, handleLogout, isLoggedIn } = useContext(AuthContext);
+  const { handleLogout, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     window.handleLogout = handleLogout;
-  }, []);
+  });
 
   useEffect(() => {
-    // console.log(JSON.stringify(isLoggedIn));
     if (!isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
+
+  // useEffect(() => {
+  //   const storedSession = window.localStorage.getItem("isLoggedIn");
+  //   if (!storedSession) {
+  //     if (!isLoggedIn) {
+  //       navigate("/login");
+  //     }
+  //   }
+  //   window.localStorage.setItem("isLoggedIn", isLoggedIn);
+  // }, [isLoggedIn, navigate]);
 
   // return <>testings</>;
 

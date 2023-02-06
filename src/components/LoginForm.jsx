@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 import { loginValidation } from "./common/SchemaValidation";
 
 function Copyright(props) {
@@ -38,8 +38,8 @@ const theme = createTheme();
 export default function SignIn({ onLogin }) {
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
-      email: "test@test.com",
-      password: "qaalan420@gmail.com",
+      email: "",
+      password: "",
       
     },
     validationSchema: loginValidation,

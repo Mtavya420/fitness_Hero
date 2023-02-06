@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Box, Stack } from "@mui/material";
 import Loader from "./Loader";
-import { exerciseOptions, fetchData, youtubeOptions } from "../utils/fetchData";
+import { fetchData, youtubeOptions } from "../utils/fetchData";
 //exerciseVideos is an array of objects with the following structure:
 // {
 //   "video": {
@@ -14,35 +14,35 @@ import { exerciseOptions, fetchData, youtubeOptions } from "../utils/fetchData";
 //       }
 //     ]
 
-const videoSample = {
-  video: {
-    channelId: "UCy0-3xdx7dTXMYmJc1jMbBQ",
-    channelName: "Buddy Fitness",
-    description: "CONTENT OF ",
-    lengthText: "8:17",
-    publishedTimeText: "2 years ago",
-    thumbnails: [
-      {
-        height: 202,
-        url: "https://i.ytimg.com/vi/PY6DrbX4W4o/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBmhoUBCBiZPTF3QxlKNXMxXhR96A",
-        width: 360,
-      },
-      {
-        height: 404,
-        url: "https://i.ytimg.com/vi/PY6DrbX4W4o/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAK0mDDSVe9O_Q5FDjeA8zVLovxMg",
-        width: 720,
-      },
-    ],
-    title:
-      "Full Week Gym Workout Plan | Week Schedule For Gym Workout | Buddy Fitness",
-    videoId: "PY6DrbX4W4o",
-    viewCountText: "11,708,517 views",
-  },
-};
+// const videoSample = {
+//   video: {
+//     channelId: "UCy0-3xdx7dTXMYmJc1jMbBQ",
+//     channelName: "Buddy Fitness",
+//     description: "CONTENT OF ",
+//     lengthText: "8:17",
+//     publishedTimeText: "2 years ago",
+//     thumbnails: [
+//       {
+//         height: 202,
+//         url: "https://i.ytimg.com/vi/PY6DrbX4W4o/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBmhoUBCBiZPTF3QxlKNXMxXhR96A",
+//         width: 360,
+//       },
+//       {
+//         height: 404,
+//         url: "https://i.ytimg.com/vi/PY6DrbX4W4o/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAK0mDDSVe9O_Q5FDjeA8zVLovxMg",
+//         width: 720,
+//       },
+//     ],
+//     title:
+//       "Full Week Gym Workout Plan | Week Schedule For Gym Workout | Buddy Fitness",
+//     videoId: "PY6DrbX4W4o",
+//     viewCountText: "11,708,517 views",
+//   },
+// };
 
 const ExerciseVideos = ({ exerciseVideos: videos, name }) => {
   const [exerciseVideos, setexerciseVideos] = useState([]);
-  const [exerciseDetail, setExerciseDetail] = useState({}); // provide some intial data for this
+  // const [exerciseDetail, setExerciseDetail] = useState({}); // provide some intial data for this
 
   useEffect(() => {
     const youtubeSearchUrl =
