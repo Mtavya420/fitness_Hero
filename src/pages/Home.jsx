@@ -12,15 +12,15 @@ const Home = () => {
   const { handleLogout, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.handleLogout = handleLogout;
-  });
+  // useEffect(() => {
+  //   window.handleLogout = handleLogout;
+  // });
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate("/login");
+  //   }
+  // }, [isLoggedIn, navigate]);
 
   // useEffect(() => {
   //   const storedSession = window.localStorage.getItem("isLoggedIn");
