@@ -12,9 +12,9 @@ const Home = () => {
   const { handleLogout, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   window.handleLogout = handleLogout;
-  // });
+  useEffect(() => {
+    window.handleLogout = handleLogout;
+  });
 
   // useEffect(() => {
   //   if (!isLoggedIn) {
