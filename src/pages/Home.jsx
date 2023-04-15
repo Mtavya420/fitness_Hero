@@ -5,6 +5,7 @@ import SearchExercises from "../components/SearchExercises";
 import Exercises from "../components/Exercises";
 import AuthContext from "../auth/auth_context";
 import { useNavigate } from "react-router-dom";
+import HorizontalScrollbar from '../components/HorizontalScrollbar';
 
 const Home = () => {
   const [bodyPart, setBodyPart] = useState("all");
@@ -12,9 +13,9 @@ const Home = () => {
   const { handleLogout, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.handleLogout = handleLogout;
-  });
+  // useEffect(() => {
+  //   window.handleLogout = handleLogout;
+  // });
 
   // useEffect(() => {
   //   if (!isLoggedIn) {
@@ -22,15 +23,8 @@ const Home = () => {
   //   }
   // }, [isLoggedIn, navigate]);
 
-  // useEffect(() => {
-  //   const storedSession = window.localStorage.getItem("isLoggedIn");
-  //   if (!storedSession) {
-  //     if (!isLoggedIn) {
-  //       navigate("/login");
-  //     }
-  //   }
-  //   window.localStorage.setItem("isLoggedIn", isLoggedIn);
-  // }, [isLoggedIn, navigate]);
+
+  
 
   // return <>testings</>;
 
@@ -39,6 +33,7 @@ const Home = () => {
       <HeroBanner />
       {bodyPart && (
         <SearchExercises
+          HorizontalScrollbar={HorizontalScrollbar}
           setExercises={setExercises}
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}
