@@ -22,9 +22,17 @@ const Home = () => {
   //     navigate("/login");
   //   }
   // }, [isLoggedIn, navigate]);
-
-
   
+
+  // useEffect(() => {
+  //   const storedSession = window.localStorage.getItem("isLoggedIn");
+  //   if (!storedSession) {
+  //     if (!isLoggedIn) {
+  //       navigate("/login");
+  //     }
+  //   }
+  //   window.localStorage.setItem("isLoggedIn", isLoggedIn);
+  // }, [isLoggedIn, navigate]);
 
   // return <>testings</>;
 
@@ -33,7 +41,7 @@ const Home = () => {
       <HeroBanner />
       {bodyPart && (
         <SearchExercises
-          HorizontalScrollbar={HorizontalScrollbar}
+          // HorizontalScrollbar={HorizontalScrollbar}
           setExercises={setExercises}
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}

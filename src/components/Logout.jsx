@@ -14,7 +14,7 @@ const Logout = () => {
 
   useEffect(() => {
     handleLogout();
-    navigate("/login");
+    navigate("/");
     return () => setShowBackDrop(false);
   }, []);
 
